@@ -8,6 +8,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/eren05y/test.git'
             }
         }
+        stage('build') {
             steps {
                 echo 'Building'
                 sh 'go run main.go'
