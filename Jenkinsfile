@@ -2,7 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('build') {
+        stage('clone') {
+            steps {
+                echo 'cloning'
+                git branch: 'main', url: 'https://github.com/eren05y/test.git'
+            }
+        }
             steps {
                 echo 'Building'
                 sh 'go run main.go'
