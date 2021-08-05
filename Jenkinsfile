@@ -1,34 +1,24 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      parallel {
-        stage('Build') {
-          steps {
-            echo 'This is a build stage.'
-          }
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+                echo 'Building'
+                sh 'go run main.go'
+            }
         }
-
-        stage('') {
-          steps {
-            sh 'echo "build on mac"'
-          }
+        stage('pack') {
+            steps {
+                echo 'packing'
+                sh 'go build main.go'
+            }
         }
-
-      }
+        stage('test') {
+            steps {
+                echo 'testing'
+                sh './main'
+            }
+        }
     }
-
-    stage('test') {
-      steps {
-        echo 'This is a test stage.'
-      }
-    }
-
-    stage('Deploy') {
-      steps {
-        echo 'This is a deploy stage.'
-      }
-    }
-
-  }
 }
